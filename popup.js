@@ -34,7 +34,7 @@ const copyButton = document.getElementById("copy");
 // Add event listener for the copy button
 copyButton.addEventListener("click", () => {
     const passwordField = document.getElementById("password");
-    password = passwordField.value;
+    const password = passwordField.value;
     if (!password)
     {
         alert("Please generate a password first.");
@@ -59,3 +59,76 @@ const strengthText =
     "Strong",
     "Very Strong"
 ];
+
+//loadAccouts
+function loadAccounts(){
+    chrome.storage.local.get({accounts: []}, ({accounts})=> {renderAccountsList(accounts);});
+}
+
+//saveAccounts
+function saveAccounts(name,login,password)
+{
+    chrome.storage.local.get({accounts: []},({accounts}) =>{
+        accounts.push({name,login,password});
+        chrome.storage.local.set({accounts}, () =>{
+            loadAccounts();
+        });
+    });
+}
+// Add event listener for the save account button
+document.getElementById("saveAccount").addEventListener("click", () => {
+    const name = document.getElementById("accountName").value.trim();
+    const login = document.getElementById("accountLogin").value.trim();
+    const password = document.getElementById("accountPassword").value.trim();
+
+    if (!name || !login || !password) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    saveAccounts(name, login, password);
+    // Clear input fields after saving
+    document.getElementById("accountName").value = "";
+    document.getElementById("accountLogin").value = "";
+    document.getElementById("accountPassword").value = "";
+});
+
+//delateAccount
+function deleteAccount(index)
+{
+    chrome.storage.local.get({accounts: []},({accounts}) => {
+        accounts.splice(index, 1);
+        chrome.storage.local.set({accounts}, () => {
+            loadAccounts();
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadAccounts();
+});
+
+// Render accounts list
+function renderAccountsList(accounts)
+{
+    const ul = document.querySelector("#accounts");
+    ul.innerHTML = ""; // Clear existing list
+    accounts.forEach(({name,login,password},i) => {
+        const li = document.createElement("li");
+        li.innerHTML =`
+            <strong>${name}</strong> (${login})
+            <button class="delete" data-index="${i}">Delete</button>
+            <button class="copy-account" data-pwd="${password}">Copy Password</button>
+        `;
+        ul.appendChild(li);
+    });
+    // Add event listeners for buttons
+    ul.querySelectorAll(".delete")
+    .forEach(btn => btn.addEventListener("click", e => {
+        deleteAccount(+e.target.dataset.index);
+    }));
+    ul.querySelectorAll(".copy-account")
+    .forEach(btn => btn.addEventListener("click", e => {
+        navigator.clipboard.writeText(e.target.dataset.pwd)
+    }));
+}

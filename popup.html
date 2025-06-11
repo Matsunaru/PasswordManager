@@ -9,35 +9,34 @@
 <body>
     <div>
         <h1>Password Manager</h1>
-        <div>
+        <div id="Verification">
             <label for="password">Password:</label>
             <input type="password" id="LoginPassword" name="password">
         </div>
-        <div>
-            <button id="generate">Generate</button>
-            <label for="length">Length:</label>
+        <div id ="PasswordGenerator">
+            <label for="length">Length: <span id="lengthValue">16</span></label>
             <input type="range" id="length" min="8" max="32" value="16">
-            <span id="lengthValue">16</span>
-            <p>generate password:</p>
-            <input type="text" id="password" readonly />
+            <button id="generate">Generate</button>
+            <p>generated password:</p>
+            <div class="row"><input type="text" id="password" readonly />
+                <button id="copy">Copy</button>
+            </div>
             <p>strength: <span id="strength">-</span></p>
-            <button id="copy">Copy</button>
         </div>
+        <div id="AddAccount">
+            <input type ="text" id="accountName" placeholder="Account Domein" />
+            <input type ="text" id="accountLogin" placeholder="Account Login" />
+            <input type ="text" id="accountPassword" placeholder="Account Password" />
+            <button id="saveAccount">Save Account</button>
+        </div>
+
         <div>
             <h3>Account</h3>
         </div>
-        <div>
-           <ul>
-                <li>
-                    <span class="account-name">Example Account</span>
-                    <button class="delete-account">Delete</button>
-                </li>
-                <li>
-                    <span class="account-name">Another Account</span>
-                    <button class="delete-account">Delete</button>
-                </li>
-                <!-- More accounts can be added here -->
-           </ul>
+        <div id="accountsList">
+            <ul id="accounts">
+                <!-- Accounts will be dynamically added here -->
+            </ul>
         </div>
     </div>
     <script src="zxcvbn.js"></script>
