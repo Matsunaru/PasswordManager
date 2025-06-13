@@ -26,6 +26,7 @@ body {
     height: auto;
     padding-bottom: 40px;
     border: 20px;
+    gap: 3px;
 }
 
 #PasswordGenerator
@@ -103,3 +104,86 @@ h1 {
     font-size: 24px;
     margin-top: 20px;
 }
+h3{
+    text-align: center;
+}
+#AddAccount
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding-bottom: 5px;
+    gap: 5px;
+}
+
+#login{
+    width: 100px;
+    height: 31px;
+    background-color: #575757;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#login:hover {
+    background-color: #818181;
+}
+
+#saveAccount{
+    width: 100px;
+    height: 31px;
+    background-color: #575757;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#saveAccount:hover {
+    background-color: #818181;
+}
+
+#accounts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.account-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: #2c2c2c;
+  border-radius: 6px;
+}
+
+.account-label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.account-login {
+  font-weight: normal;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.account-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.account-actions button {
+  flex: 1;
+  height: 32px;
+  background-color: #575757;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.account-actions button:hover {
+  background-color: #818181;
+}
+

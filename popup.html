@@ -12,6 +12,7 @@
         <div id="Verification">
             <label for="password">Password:</label>
             <input type="password" id="LoginPassword" name="password">
+            <button id="login">Login</button>
         </div>
         <div id ="PasswordGenerator">
             <label for="length">Length: <span id="lengthValue">16</span></label>
@@ -23,6 +24,7 @@
             </div>
             <p>strength: <span id="strength">-</span></p>
         </div>
+        <div id="protectedArea" style="display: none;">
         <div id="AddAccount">
             <input type ="text" id="accountName" placeholder="Account Domein" />
             <input type ="text" id="accountLogin" placeholder="Account Login" />
@@ -37,6 +39,7 @@
             <ul id="accounts">
                 <!-- Accounts will be dynamically added here -->
             </ul>
+        </div>
         </div>
     </div>
     <script src="zxcvbn.js"></script>
